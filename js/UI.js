@@ -6,10 +6,10 @@ export class UI {
                     element.setAttribute("id", `${product.id}`)
         element.innerHTML = `
             <div class = "card text-center mb-4">
-                <div class = "card-body">
+                <div class = "card-body" id = "${product.name}">
                     <strong>Product Name</strong>: ${product.name}
                     <strong>Product Price</strong>: ${product.price}
-                    <strong>Product Year</strong>: ${product.year}
+                    <strong>Product Year</strong>: ${product.stock}
                     <a href = "#" class = "btn btn-danger" name="delete">Delete</a>
                 </div>
             </div>
@@ -26,6 +26,31 @@ export class UI {
             element.parentElement.parentElement.parentElement.remove();
         }
 
+    }
+
+    getProduct() {
+        let products = JSON.parse(localStorage.getItem("products"));
+        const ui = new UI();
+        if (products === null){
+            return 
+        } else {
+            for  ( let i = 0  ;  i < products.length ;  i++) {
+                ui.addProduct(products[i]);
+            }
+        }
+        
+    }
+
+    updateProduct(product){
+        const change = document.getElementById(product.name);
+        change.innerHTML = `
+        <div class = "card-body" id = "${product.name}">
+                    <strong>Product Name</strong>: ${product.name}
+                    <strong>Product Price</strong>: ${product.price}
+                    <strong>Product Year</strong>: ${product.stock}
+                    <a href = "#" class = "btn btn-danger" name="delete">Delete</a>
+                </div>
+        `;
     }
 
     showMessage(message, cssClass){

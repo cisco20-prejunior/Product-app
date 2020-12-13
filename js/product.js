@@ -1,9 +1,9 @@
 
 export class Product {
-    constructor (name, price, year, ID) {
+    constructor (name, price, stock, ID) {
         this.name = name;
         this.price = price;
-        this.year = year;
+        this.stock = stock;
         this.id = ID;
     }
 }
