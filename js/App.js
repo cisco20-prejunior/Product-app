@@ -5,37 +5,26 @@ import  {generateUUID} from "./UUID.js";
 
 new UI().getProduct();
 // DOM Events
+
 document.getElementById("product-form")
     .addEventListener("submit", (e) => {
-        const name = document.getElementById("name").value
-        const price = document.getElementById("price").value
-        const stock = document.getElementById("stock").value
-        const id = generateUUID();
-        const product = new Product(name, price,  stock, id);
-        const products = JSON.parse(localStorage.getItem("products"));
+        const name = document.getElementById("name").value.toUpperCase(),
+                price = document.getElementById("price").value,
+                stock = document.getElementById("stock").value,
+                id = generateUUID(),
+                product = new Product(name, price,  stock, id);
         e.preventDefault();
         const ui = new UI();
         ui.resetform();
         const  storage = new Storage();
 
         if (name === "" || price === "" || stock === "") {
-            return ui.showMessage("Complete the field please", "danger")
+            return ui.showMessage("Complete the field please", "info")
         }        
-
-        for (let i = 0 ; i < products.length ; i++){
-            if (products[i].name === product.name) {
-                products[i] = product;
-                localStorage.setItem("products", JSON.stringify(products))
-                ui.updateProduct(product);
-                ui.showMessage("Product change Succesfully", "success");
-                return
-            }
-        }
-
-        storage.saveProduct(product);
-        ui.addProduct(product);
+        
+        storage.saveProduct(product, ui);
         ui.showMessage("Product Add Succesfully", "success");
-})
+    })
 
 document.getElementById("product-list").addEventListener("click", (e) =>{
     const divID = e.target.parentElement.parentElement.parentElement;
@@ -44,7 +33,7 @@ document.getElementById("product-list").addEventListener("click", (e) =>{
     storage.deleteStorage(divID.id);
     ui.deleteProduct(e.target)
     if (e.target.classList.contains("btn")){
-        ui.showMessage("Product Delete Succesfully", "info");
+        ui.showMessage("Product Delete Succesfully", "danger");
     }
     
 })
