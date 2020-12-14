@@ -1,11 +1,11 @@
 
 //  Set de products on the list 
-function setList(){
+
+window.addEventListener("load", () => {
     const products = JSON.parse(localStorage.getItem("products")),
-    list = document.getElementById("product-list"),
-    element = document.createElement("option") ;
+    list = document.getElementById("product-list");
 
-
+    document.getElementById("precio").value = products[0].price;
     for (let i =0; i < products.length; i++){
         list.innerHTML += `
         <option id ="${products[i].name}">
@@ -13,15 +13,14 @@ function setList(){
         </option>
         `;
     }
-}
-setList();
 
-    let list =  document.getElementById("product-list");
+})
 
-    list.addEventListener("change", () =>{
-        let selectedOption = list.options[list.selectedIndex];
+document.getElementById("product-list").addEventListener("change", () =>{
         const products = JSON.parse(localStorage.getItem("products")),
-                    price = document.getElementById("precio");
+                    price = document.getElementById("precio"),
+                    list = document.getElementById("product-list");
+        let selectedOption = list.options[list.selectedIndex];
             for (let i =0; i < products.length; i++){
                 if (products[i].name === selectedOption.id){
                     price.value = products[i].price;
@@ -29,4 +28,3 @@ setList();
             }
         }
     )
-// 

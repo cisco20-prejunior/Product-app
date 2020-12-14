@@ -19,6 +19,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-dark bg-dark">
       <a class="navbar-brand" href="#">Products App</a>
+      <a class="navbar-brand" href="sell.html">Products Sell</a>
     </nav>
 
     <div class="container">
@@ -37,7 +38,8 @@
                   id="name"
                   placeholder="Product Name"
                   class="form-control"
-                  pattern="[a-zA-Z]+"
+                  pattern="[a-zA-Z ]{2,254}"
+                  autofocus
                 />
               </div>
               <div class="form-group">
@@ -75,7 +77,6 @@
         <div id="product-list" class="col-md-8"></div>
       </div>
     </div>
-    <a href="sell.html">pa la otra página</a>
     <script src="js/App.js" type="module"></script>
   </body>
 </html>

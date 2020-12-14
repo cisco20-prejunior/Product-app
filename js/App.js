@@ -15,15 +15,13 @@ document.getElementById("product-form")
                 product = new Product(name, price,  stock, id);
         e.preventDefault();
         const ui = new UI();
-        ui.resetform();
         const  storage = new Storage();
 
         if (name === "" || price === "" || stock === "") {
-            return ui.showMessage("Complete the field please", "info")
+            return ui.showMessage("Complete the field please", "warning")
         }        
-        
+        ui.resetform();
         storage.saveProduct(product, ui);
-        ui.showMessage("Product Add Succesfully", "success");
     })
 
 document.getElementById("product-list").addEventListener("click", (e) =>{

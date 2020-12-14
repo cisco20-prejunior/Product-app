@@ -5,13 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sell</title>
   </head>
+
+  <!-- Bootswatch Cosmo Theme -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css"
+  />
+
   <body>
-    <a href="index.html"> Para la principal</a>
-    <form id="sell-form">
-      <select name="product-list" id="product-list" autofocus></select>
-      <input type="text" value="precio" disabled id="precio" />
-      <input type="text" id="cantidad" />
-    </form>
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="index.html">Products App</a>
+      <a class="navbar-brand" href="#">Products Sell</a>
+    </nav>
+
+    <div class="container">
+      <!-- APPLICATION -->
+      <div id="App" class="row pt-5">
+        <!-- FORM -->
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <h4>Add a product</h4>
+            </div>
+            <form id="sell-form" class="card-body">
+              <div class="form-group">
+                <select
+                  name="product-list"
+                  id="product-list"
+                  class="form-control"
+                  autofocus
+                ></select>
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="precio"
+                  placeholder="Price"
+                  class="form-control"
+                  disabled
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="amount"
+                  min="1"
+                  max="9999"
+                  step="1"
+                  placeholder="Amount"
+                  class="form-control"
+                  pattern="[0-9]+"
+                />
+              </div>
+              <input
+                type="submit"
+                value="Save"
+                class="btn btn-primary btn-block"
+              />
+            </form>
+          </div>
+        </div>
+
+        <!-- PRODUCTS LIST -->
+        <div id="product-list" class="col-md-8"></div>
+      </div>
+    </div>
     <script src="sellJS/app.js" type="module"></script>
   </body>
 </html>

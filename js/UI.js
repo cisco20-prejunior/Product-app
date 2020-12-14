@@ -9,7 +9,7 @@ export class UI {
                 <div class = "card-body" id = "${product.name}">
                     <strong>Product Name</strong>: ${product.name}
                     <strong>Product Price</strong>: ${product.price}
-                    <strong>Product Year</strong>: ${product.stock}
+                    <strong>Product Stock</strong>: ${product.stock}
                     <a href = "#" class = "btn btn-danger" name="delete">Delete</a>
                 </div>
             </div>
@@ -51,6 +51,7 @@ export class UI {
                     <a href = "#" class = "btn btn-danger" name="delete">Delete</a>
                 </div>
         `;
+        this.showMessage("Product Update Succesfully", "alert alert-success");
     }
 
     showMessage(message, cssClass){
