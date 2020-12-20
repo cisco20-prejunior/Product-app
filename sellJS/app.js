@@ -38,6 +38,23 @@ class UI {
     }
 }
 
+class Storage{
+    updateStorage(product){
+        const products = JSON.parse(localStorage.getItem("products"));
+        
+        for (let i = 0; i < products.length; i++){
+            if(products[i].name == product.name){
+                const newStock = products[i].stock - product.amount;
+                if(newStock <= 0){
+                    alert("Está vendiendo más producto del que tiene");
+                } else {
+                    products[i].stock = newStock;
+                }
+            }
+        }
+        localStorage.setItem( "products" ,JSON.stringify(products));
+    }
+}
 //  Set de products on the list 
 
 document.getElementById("sell-form")
@@ -47,7 +64,13 @@ document.getElementById("sell-form")
                 price = parseInt(document.getElementById("precio").value),
                 amount = parseInt(document.getElementById("amount").value),
                 product = new Product(name, price, amount),
-                ui =  new UI();
+                ui =  new UI(),
+                storage = new Storage();
+            if ( document.getElementById("amount").value === ""){
+                alert("Por favor rellena los espacios necesarios");
+                return
+            }
+            storage.updateStorage(product);
             ui.addProduct(product);
             console.log(product);
             ui.resetForm();

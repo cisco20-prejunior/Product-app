@@ -9,8 +9,8 @@ new UI().getProduct();
 document.getElementById("product-form")
     .addEventListener("submit", (e) => {
         const name = document.getElementById("name").value.toUpperCase(),
-                price = document.getElementById("price").value,
-                stock = document.getElementById("stock").value,
+                price = parseInt(document.getElementById("price").value),
+                stock = parseInt(document.getElementById("stock").value),
                 id = generateUUID(),
                 product = new Product(name, price,  stock, id);
         e.preventDefault();
