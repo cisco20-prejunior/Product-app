@@ -47,6 +47,7 @@ class Storage{
                 const newStock = products[i].stock - product.amount;
                 if(newStock <= 0){
                     alert("Está vendiendo más producto del que tiene");
+                    return true
                 } else {
                     products[i].stock = newStock;
                 }
@@ -57,6 +58,22 @@ class Storage{
 }
 //  Set de products on the list 
 
+window.addEventListener("load", () => {
+    const products = JSON.parse(localStorage.getItem("products")),
+    list = document.getElementById("product-list");
+
+    document.getElementById("precio").value = products[0].price;
+    for (let i =0; i < products.length; i++){
+        list.innerHTML += `
+        <option id ="${products[i].name}">
+            ${products[i].name}
+        </option>
+        `;
+    }
+
+})
+
+// Activar el modo oscuro   
 document.getElementById("darkMode").addEventListener("change", () =>{
     const darkMode =  document.getElementById("darkMode"),
             body = document.getElementById("body"),
@@ -105,12 +122,14 @@ document.getElementById("sell-form")
                 alert("Por favor rellena los espacios necesarios");
                 return
             }
+            if ( storage.updateStorage(product)){
+                return
+            }
             if (darkMode.checked){
                 ui.addProduct(product, "dark", "light")
             } else {
                 ui.addProduct(product, "light", "dark")
             }
-            storage.updateStorage(product);
             ui.resetForm();
 })
 
@@ -119,20 +138,6 @@ document.getElementById("list-product").addEventListener("click", (e) =>{
     ui.deleteProduct(e.target)
 })
 
-window.addEventListener("load", () => {
-    const products = JSON.parse(localStorage.getItem("products")),
-    list = document.getElementById("product-list");
-
-    document.getElementById("precio").value = products[0].price;
-    for (let i =0; i < products.length; i++){
-        list.innerHTML += `
-        <option id ="${products[i].name}">
-            ${products[i].name}
-        </option>
-        `;
-    }
-
-})
 
 document.getElementById("product-list").addEventListener("change", () =>{
         const products = JSON.parse(localStorage.getItem("products")),
