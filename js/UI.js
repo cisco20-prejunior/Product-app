@@ -3,7 +3,19 @@ export class UI {
     addProduct(product, color, text){
         const productList = document.getElementById("product-list");
         const element = document.createElement("div");
-                    element.setAttribute("id", `${product.id}`)
+        if (color == undefined || text == undefined){
+            element.innerHTML = `
+            <div class = "card text-center mb-4 bg-light cards">
+                <div class = "card-body text-dark card-title" id = "${product.name}">
+                    <strong>Product Name</strong>: ${product.name}
+                    <strong>Product Price</strong>: ${product.price}
+                    <strong>Product Stock</strong>: ${product.stock}
+                    <a href = "#" class = "btn btn-danger" name="delete">Delete</a>
+                </div>
+            </div>
+        `;
+        return productList.appendChild(element);
+        }
         element.innerHTML = `
             <div class = "card text-center mb-4 bg-${color} cards">
                 <div class = "card-body text-${text} card-title" id = "${product.name}">
@@ -15,6 +27,40 @@ export class UI {
             </div>
         `;
         productList.appendChild(element);
+    }
+
+    darkMode(){
+        const darkMode =  document.getElementById("darkMode"),
+            body = document.getElementById("body"),
+            card = document.getElementById("card"), 
+            nav = document.getElementById("nav"),
+            title = document.getElementById("cardTitle"),
+            cardGroup = document.getElementsByClassName("cards"),
+            cardText = document.getElementsByClassName("card-title");
+    if(darkMode.checked){
+        body.classList = "bg-dark";
+        card.classList = card.className.replace("bg-light","bg-dark");
+        nav.classList = nav.className.replace("navbar-dark bg-dark", "navbar-light bg-light")
+        title.classList = "text-light"
+        for(let i =0; i<cardGroup.length; i++){
+            cardGroup[i].classList = cardGroup[i].className.replace("bg-light", "bg-dark")
+        }
+        for(let i =0; i<cardText.length; i++){
+            cardText[i].classList = cardText[i].className.replace("text-dark", "text-light")
+            
+        }
+    } else {
+        body.classList = "bg-light";
+        card.classList = card.className.replace("bg-dark", "bg-light")
+        nav.classList = nav.className.replace("navbar-light bg-light", "navbar-dark bg-dark")
+        title.classList = "text-dark";
+        for(let i =0; i<cardGroup.length; i++){
+            cardGroup[i].classList = cardGroup[i].className.replace("bg-dark", "bg-light")
+        }
+        for(let i =0; i<cardText.length; i++){
+            cardText[i].classList = cardText[i].className.replace("text-light", "text-dark")
+        }
+    }
     }
 
     resetform(){
