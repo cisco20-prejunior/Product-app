@@ -1,12 +1,12 @@
 
 export class UI {
-    addProduct(product){
+    addProduct(product, color, text){
         const productList = document.getElementById("product-list");
         const element = document.createElement("div");
                     element.setAttribute("id", `${product.id}`)
         element.innerHTML = `
-            <div class = "card text-center mb-4">
-                <div class = "card-body" id = "${product.name}">
+            <div class = "card text-center mb-4 bg-${color} cards">
+                <div class = "card-body text-${text} card-title" id = "${product.name}">
                     <strong>Product Name</strong>: ${product.name}
                     <strong>Product Price</strong>: ${product.price}
                     <strong>Product Stock</strong>: ${product.stock}

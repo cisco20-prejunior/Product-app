@@ -1,12 +1,12 @@
 
 export class Storage {
-    saveProduct(product, ui) { 
+    saveProduct(product, ui, color, text) { 
 
         if (localStorage.getItem("products") === null){
             let products = [];
             products.push(product);
             localStorage.setItem("products", JSON.stringify(products));
-            ui.addProduct(product);
+            ui.addProduct(product, color, text);
             ui.showMessage("Product Added Succesfully", "success");
         } else {
             const products = JSON.parse(localStorage.getItem("products"));
@@ -14,11 +14,11 @@ export class Storage {
                 if (products[i].name === product.name) {
                     products[i] = product;
                     localStorage.setItem("products", JSON.stringify(products))
-                    ui.updateProduct(product);
+                    ui.updateProduct(product, color, text);
                     return 
                 }
             }
-            ui.addProduct(product);
+            ui.addProduct(product, color, text);
             ui.showMessage("Product Added Succesfully", "success");
             products.push(product);
             localStorage.setItem("products", JSON.stringify(products)); 
