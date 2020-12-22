@@ -25,6 +25,14 @@ document.getElementById("darkMode").addEventListener("change", () =>{
    ui.darkMode();
 })
 
+window.addEventListener("load", () =>{
+    const dark = document.getElementById("darkMode");
+    const ui = new UI();
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+        dark.checked = true;
+        ui.darkMode()
+    }
+})
 //  control del formilario para agregar productos
 document.getElementById("sell-form")
     .addEventListener("submit", (e) =>{
