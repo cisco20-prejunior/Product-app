@@ -30,7 +30,7 @@ document.getElementById("product-form")
 
         if (name === "" || price === "" || stock === "") {
             return ui.showMessage("Complete the field please", "warning")
-        }  
+        }
         if (darkMode.checked){
             storage.saveProduct(product, ui, "dark", "light")
         } else {
