@@ -10,9 +10,9 @@ export class Storage {
             ui.showMessage("Product Added Succesfully", "success");
         } else {
             const products = JSON.parse(localStorage.getItem("products"));
-            for (let i = 0 ; i < products.length & products.length !=0  ; i++){
-                if (products[i].name === product.name) {
-                    products[i] = product;
+            for ( let producto of products ){
+                if (producto === product.name && products.length !=0) {
+                    producto = product;
                     localStorage.setItem("products", JSON.stringify(products))
                     ui.updateProduct(product, color, text);
                     return 
@@ -26,11 +26,11 @@ export class Storage {
         
     }
 
-    deleteStorage(id){
+    deleteStorage(){
         let products = JSON.parse(localStorage.getItem("products"));
     
         for ( let i = 0; i < products.length ; i++){
-            if (products[i].id === id){
+            if (products[i].name === id){
                 products.splice( i , 1 )
             } 
         }

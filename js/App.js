@@ -3,7 +3,6 @@ import {UI} from "./UI.js";
 import {Storage} from "./localStorage.js";
 import  {generateUUID} from "./UUID.js";
 
-new UI().getProduct();
 // DOM Events
 document.getElementById("darkMode").addEventListener("change", () =>{
     const ui = new UI();
@@ -16,6 +15,7 @@ window.addEventListener("load", () =>{
         dark.checked = true;
         ui.darkMode()
     }
+    ui.getProduct();
 })
 document.getElementById("product-form")
     .addEventListener("submit", (e) => {

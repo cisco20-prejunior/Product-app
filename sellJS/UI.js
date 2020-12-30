@@ -36,11 +36,11 @@ if(darkMode.checked){
     card.classList = card.className.replace("bg-light","bg-dark");
     nav.classList = nav.className.replace("navbar-dark bg-dark", "navbar-light bg-light")
     title.classList = "text-light"
-    for(let i =0; i<cardGroup.length; i++){
-        cardGroup[i].classList = cardGroup[i].className.replace("bg-light", "bg-dark")
+    for(let card in cardGroup){
+        cardGroup[card].classList = cardGroup[card].className.replace("bg-light", "bg-dark")
     }
-    for(let i =0; i<cardText.length; i++){
-        cardText[i].classList = cardText[i].className.replace("text-dark", "text-light")
+    for(let card in cardText){
+        cardText[card].classList = cardText[card].className.replace("text-dark", "text-light")
         
     }
 } else {
@@ -48,11 +48,11 @@ if(darkMode.checked){
     card.classList = card.className.replace("bg-dark", "bg-light")
     nav.classList = nav.className.replace("navbar-light bg-light", "navbar-dark bg-dark")
     title.classList = "text-dark";
-    for(let i =0; i<cardGroup.length; i++){
-        cardGroup[i].classList = cardGroup[i].className.replace("bg-dark", "bg-light")
+    for(let card in cardGroup){
+        cardGroup[card].classList = cardGroup[card].className.replace("bg-dark", "bg-light")
     }
-    for(let i =0; i<cardText.length; i++){
-        cardText[i].classList = cardText[i].className.replace("text-light", "text-dark")
+    for(let card in cardGroup){
+        cardText[card].classList = cardText[card].className.replace("text-light", "text-dark")
     }
 }
     }

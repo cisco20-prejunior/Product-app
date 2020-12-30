@@ -71,9 +71,9 @@ document.getElementById("product-list").addEventListener("change", () =>{
                     price = document.getElementById("precio"),
                     list = document.getElementById("product-list");
         let selectedOption = list.options[list.selectedIndex];
-            for (let i =0; i < products.length; i++){
-                if (products[i].name === selectedOption.id){
-                    price.value = products[i].price;
+            for (let product in products){
+                if (products[produc].name === selectedOption.id){
+                    price.value = products[product].price;
                 }
             }
         }

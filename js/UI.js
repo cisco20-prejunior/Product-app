@@ -3,10 +3,11 @@ export class UI {
     addProduct(product, color, text){
         const productList = document.getElementById("product-list");
         const element = document.createElement("div");
+        element.id =  product.name;
         if (color == undefined || text == undefined){
             element.innerHTML = `
             <div class = "card text-center mb-4 bg-light cards">
-                <div class = "card-body text-dark card-title" id = "${product.name}">
+                <div class = "card-body text-dark card-title">
                     <strong>Product Name</strong>: ${product.name}
                     <strong>Product Price</strong>: ${product.price}
                     <strong>Product Stock</strong>: ${product.stock}
@@ -42,12 +43,11 @@ export class UI {
         card.classList = card.className.replace("bg-light","bg-dark");
         nav.classList = nav.className.replace("navbar-dark bg-dark", "navbar-light bg-light")
         title.classList = "text-light"
-        for(let i =0; i<cardGroup.length; i++){
-            cardGroup[i].classList = cardGroup[i].className.replace("bg-light", "bg-dark")
+        for(let card in cardGroup){
+            cardGroup[card].classList = cardGroup[card].className.replace("bg-light", "bg-dark")
         }
-        for(let i =0; i<cardText.length; i++){
-            cardText[i].classList = cardText[i].className.replace("text-dark", "text-light")
-            
+        for(let card in cardText){
+            cardText[card].classList = cardText[card].className.replace("text-dark", "text-light")
         }
     } else {
         body.classList = "bg-light";
@@ -111,7 +111,7 @@ export class UI {
 
         setTimeout( () =>{
             document.querySelector(".alert").remove()
-        }, 1500);
+        }, 1000);
 
     }
 }
