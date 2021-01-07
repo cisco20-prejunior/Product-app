@@ -26,7 +26,7 @@ export class Storage {
         
     }
 
-    deleteStorage(){
+    deleteStorage(id){
         let products = JSON.parse(localStorage.getItem("products"));
     
         for ( let i = 0; i < products.length ; i++){
