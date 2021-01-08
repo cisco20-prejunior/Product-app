@@ -21,17 +21,21 @@ window.addEventListener("load", () => {
 
 // Activar el modo oscuro   
 document.getElementById("darkMode").addEventListener("change", () =>{
-   const ui = new UI();
+   const ui = new UI(),
+            storage = new Storage();
+    storage.darkStorage(document.getElementById("darkMode"));
    ui.darkMode();
 })
 
 window.addEventListener("load", () =>{
-    const dark = document.getElementById("darkMode");
-    const ui = new UI();
+    const dark = document.getElementById("darkMode"), 
+            ui = new UI();
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
         dark.checked = true;
         ui.darkMode()
     }
+    dark.checked = JSON.parse(localStorage.getItem("dark"));
+    ui.darkMode()
 })
 //  control del formilario para agregar productos
 document.getElementById("sell-form")

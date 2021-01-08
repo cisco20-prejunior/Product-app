@@ -5,21 +5,25 @@ import  {generateUUID} from "./UUID.js";
 
 // DOM Events
 document.getElementById("darkMode").addEventListener("change", () =>{
-    const ui = new UI();
+    const ui = new UI(),
+            storage = new Storage();
     ui.darkMode();
+    storage.darkStorage(document.getElementById("darkMode"));
 })
 window.addEventListener("load", () =>{
-    const dark = document.getElementById("darkMode");
-    const ui = new UI();
+    const dark = document.getElementById("darkMode"), 
+            ui = new UI();
+    ui.getProduct();
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
         dark.checked = true;
         ui.darkMode()
     }
-    ui.getProduct();
+    dark.checked = JSON.parse(localStorage.getItem("dark"));
+    ui.darkMode()
 })
 document.getElementById("product-form")
     .addEventListener("submit", (e) => {
-        const name = document.getElementById("name").value.toUpperCase(),
+        const name = document.getElementById("name").value.toUpperCase().replace(/ /g, ""),
                 price = parseInt(document.getElementById("price").value),
                 stock = parseInt(document.getElementById("stock").value),
                 id = generateUUID(),
@@ -44,7 +48,7 @@ document.getElementById("product-list").addEventListener("click", (e) =>{
     const ui = new UI();
     const storage = new Storage();
     storage.deleteStorage(divID.id);
-    ui.deleteProduct(e.target)
+    ui.deleteProduct(e.target);
     if (e.target.classList.contains("btn")){
         ui.showMessage("Product Delete Succesfully", "danger");
     }

@@ -42,4 +42,7 @@ export class Storage {
 
         localStorage.setItem( "products" , JSON.stringify(products));
     }
+    darkStorage(btn){
+        localStorage.setItem("dark", btn.checked)
+    }
 }

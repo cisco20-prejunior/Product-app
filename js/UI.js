@@ -3,7 +3,7 @@ export class UI {
     addProduct(product, color, text){
         const productList = document.getElementById("product-list");
         const element = document.createElement("div");
-        element.id =  product.name;
+        element.id =  product.name.replace(/ /g, "");
         if (color == undefined || text == undefined){
             element.innerHTML = `
             <div class = "card text-center mb-4 bg-light cards">
@@ -15,11 +15,15 @@ export class UI {
                 </div>
             </div>
         `;
-        return productList.appendChild(element);
+        productList.appendChild(element);
+        setTimeout(() =>{
+            gsap.from(`#${element.id}`, {duration: 1, autoAlpha : 0.3});
+        }, 10)
+        return 
         }
         element.innerHTML = `
             <div class = "card text-center mb-4 bg-${color} cards">
-                <div class = "card-body text-${text} card-title" id = "${product.name}">
+                <div class = "card-body text-${text} card-title">
                     <strong>Product Name</strong>: ${product.name}
                     <strong>Product Price</strong>: ${product.price}
                     <strong>Product Stock</strong>: ${product.stock}
@@ -27,6 +31,9 @@ export class UI {
                 </div>
             </div>
         `;
+        setTimeout(() =>{
+            gsap.to(`#${element.id}`, {duration: 1, autoAlpha : 1});
+        }, 10)
         productList.appendChild(element);
     }
 
@@ -43,11 +50,11 @@ export class UI {
         card.classList = card.className.replace("bg-light","bg-dark");
         nav.classList = nav.className.replace("navbar-dark bg-dark", "navbar-light bg-light")
         title.classList = "text-light"
-        for(let card in cardGroup){
-            cardGroup[card].classList = cardGroup[card].className.replace("bg-light", "bg-dark")
+        for(let card of cardGroup){
+                card.className = card.className.replace("bg-light", "bg-dark")
         }
-        for(let card in cardText){
-            cardText[card].classList = cardText[card].className.replace("text-dark", "text-light")
+        for(let card of cardText){
+            card.className = card.className.replace("text-dark", "text-light")
         }
     } else {
         body.classList = "bg-light";
